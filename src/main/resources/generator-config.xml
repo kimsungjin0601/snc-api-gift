@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="PostgresTables" targetRuntime="MyBatis3">
+
+        <plugin type="com.snc.gift.common.generator.plugins.CustomLombokPlugin"/>
+        <plugin type="com.snc.gift.common.generator.plugins.SchemaAnnotationPlugin"/>
+
+        <jdbcConnection driverClass="org.postgresql.Driver"
+                        connectionURL="jdbc:postgresql://gift-test-db.ce9a6cmqgmbx.us-east-1.rds.amazonaws.com:5432/gift_db"
+                        userId="gift_adm"
+                        password="gift_adm123!@#"/>
+
+        <javaModelGenerator targetPackage="com.snc.gift.domain"
+                            targetProject="C:/project/snc/snc-api-gift/src/main/java"/>
+
+
+        <!-- 생성할 테이블 -->
+        <table tableName="admin" domainObjectName="Admin"/>
+        <table tableName="category" domainObjectName="Category"/>
+        <table tableName="common_code" domainObjectName="CommonCode"/>
+        <table tableName="common_code_group" domainObjectName="CommonCodeGroup"/>
+        <table tableName="domain" domainObjectName="Domain"/>
+        <table tableName="member" domainObjectName="Member"/>
+        <table tableName="member_block" domainObjectName="MemberBlock"/>
+        <table tableName="order_branch" domainObjectName="OrderBranch"/>
+        <table tableName="order_gift" domainObjectName="OrderGift"/>
+        <table tableName="pin" domainObjectName="Pin"/>
+        <table tableName="point_history" domainObjectName="PointHistory"/>
+        <table tableName="product" domainObjectName="Product"/>
+        <table tableName="denomination" domainObjectName="Denomination"/>
+        <table tableName="product_desc" domainObjectName="ProductDesc"/>
+        <table tableName="product_image" domainObjectName="ProductImage"/>
+        <table tableName="rtpay_log" domainObjectName="RTPayLog"/>
+        <table tableName="users" domainObjectName="User"/>
+    </context>
+</generatorConfiguration>

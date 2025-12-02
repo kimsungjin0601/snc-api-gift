@@ -28,6 +28,7 @@ dependencies {
     implementation 'org.postgresql:postgresql:42.7.8'
     implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16'
     implementation 'org.hibernate:hibernate-validator:8.0.2.Final'
+    implementation 'org.mybatis.generator:mybatis-generator-core:1.4.2'
 
     implementation 'org.apache.commons:commons-pool2:2.11.1'
 
@@ -36,6 +37,8 @@ dependencies {
 
     implementation 'org.mapstruct:mapstruct:1.5.5.Final'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+
+    implementation files('libs/cstify-common-1.0.0.jar')
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
