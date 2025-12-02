@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SncApiGiftApplication {
+public class GiftApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SncApiGiftApplication.class, args);
+        SpringApplication.run(GiftApplication.class, args);
     }
 
 }
