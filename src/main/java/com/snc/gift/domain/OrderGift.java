@@ -18,38 +18,54 @@ public class OrderGift extends BaseDomain {
     @Schema(description="주문_번호")
     private Long orderNo;
 
-    @Schema(description="회원_번호")
+    @Schema(description="파트너_번호")
+    private Long partnerNo;
+
+    @Schema(description="상위_파트너_번호(에이전트)")
+    private Long parentPartnerNo;
+
+    @Schema(description="사용자_번호")
     private Long userNo;
 
-    @Schema(description="지점_번호(admin_no)")
-    private Long branchNo;
 
-    @Schema(description="에이전트_번호(admin_no)")
-    private Long agentNo;
-
-    @Schema(description="주문_코드")
+    @Schema(description="주문_코드(외부노출용)")
     private String orderCode;
 
     @Schema(description="주문상태_코드")
     private String orderStatusCd;
 
-    @Schema(description="상품_번호")
-    private Long productNo;
-
-    @Schema(description="핀_번호")
-    private Long pinNo;
-
-    @Schema(description="주문_금액")
-    private Integer orderAmt;
+    @Schema(description="가상핀_코드")
+    private String vPinCode;
 
     @Schema(description="주문_일시")
     private Instant orderAt;
 
-    @Schema(description="입금일시")
+    @Schema(description="결제_완료일시")
     private Instant paidAt;
+
+    @Schema(description="가상핀_발송_완료일시")
+    private Instant completedAt;
 
     @Schema(description="주문_취소일시")
     private Instant cancelAt;
+
+    @Schema(description="총_결제_금액")
+    private Integer totalAmount;
+
+    @Schema(description="총_할인_금액")
+    private Integer discountAmount;
+
+    @Schema(description="최종_결제_금액")
+    private Integer finalAmount;
+
+    @Schema(description="주문자_명")
+    private String ordererName;
+
+    @Schema(description="주문자_전화")
+    private String ordererPhone;
+
+    @Schema(description="주문자_이메일")
+    private String ordererEmail;
 
 //    @Schema(description="생성일시")
 //    private Date createdAt;

@@ -2,36 +2,33 @@ package com.snc.gift.domain;
 
 import com.cstify.common.base.BaseDomain;
 import io.swagger.v3.oas.annotations.media.Schema;
-
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-
-import java.util.Date;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductImage extends BaseDomain {
+public class Tenant extends BaseDomain {
 
-    @Schema(description="상품_이미지_번호")
-    private Long productImageNo;
+    @Schema(description="테넌트_번호")
+    private Long tenantNo;
 
-    @Schema(description="상품번호")
-    private Long productNo;
+    @Schema(description="테넌트_코드(외부식별자)")
+    private String tenantCode;
 
-    @Schema(description="이미지_유형")
-    private String imageTypeCd;
+    @Schema(description="테넌트_명")
+    private String tenantName;
 
-    @Schema(description="이미지_URL")
-    private String imageUrl;
+    @Schema(description="기본_타임존")
+    private String timezone;
 
-    @Schema(description="정렬순서")
-    private Integer sortOrder;
+    @Schema(description="기본_로케일")
+    private String locale;
 
-    @Schema(description="이미지_대체_텍스트")
-    private String altText;
+    @Schema(description="통화_코드")
+    private String currencyCode;
 
 //    @Schema(description="삭제여부")
 //    private Boolean isDeleted;

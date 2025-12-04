@@ -22,6 +22,9 @@ public class MemberBlock extends BaseDomain  {
     @Schema(description="차단한_사용자_번호")
     private Long blockerUserNo;
 
+    @Schema(description="차단_사유_코드")
+    private String reasonCd;
+
     @Schema(description="차단_사유")
     private String reasonText;
 

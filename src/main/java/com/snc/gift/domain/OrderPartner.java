@@ -13,16 +13,16 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderBranch extends BaseDomain  {
+public class OrderPartner extends BaseDomain  {
 
     @Schema(description="주문_번호")
     private Long orderNo;
 
-    @Schema(description="지점_번호(admin_no)")
-    private Long branchNo;
+    @Schema(description="파트너_번호")
+    private Long partnerNo;
 
-    @Schema(description="에이전트_번호(admin_no)")
-    private Long agentNo;
+    @Schema(description="상위_파트너_번호(에이전트)")
+    private Long parentPartnerNo;
 
     @Schema(description="주문_코드")
     private String orderCode;
@@ -34,13 +34,13 @@ public class OrderBranch extends BaseDomain  {
     private Instant orderAt;
 
     @Schema(description="배송완료일시")
-    private Instant deliveryAt;
+    private Instant completedAt;
 
     @Schema(description="취소일시")
     private Instant cancelAt;
 
     @Schema(description="주문_금액")
-    private Integer orderAmt;
+    private Integer orderAmount;
 
     @Schema(description="메모 (주문_상세)")
     private String memo;

@@ -18,13 +18,22 @@ public class Product extends BaseDomain {
     @Schema(description="상품번호")
     private Long productNo;
 
+    @Schema(description="파트너_번호")
+    private Long partnerNo;
+
+    @Schema(description="판매자번호")
+    private Long sellerNo;
+
+    @Schema(description="표준카테고리번호")
+    private Long categoryNo;
+
     @Schema(description="상품명")
     private String productName;
 
     @Schema(description="상품코드")
     private String productCode;
 
-    @Schema(description="상품상태코드")
+    @Schema(description="상품상태코드 (판매중,품절,판매중지)")
     private String productStatusCd;
 
     @Schema(description="전시여부")
@@ -39,8 +48,8 @@ public class Product extends BaseDomain {
     @Schema(description="판매종료일시")
     private Instant endAt;
 
-    @Schema(description="표준카테고리번호")
-    private Long categoryNo;
+    @Schema(description="성인상품여부")
+    private Boolean isAdult;
 
 //    @Schema(description="삭제여부")
 //    private Boolean isDeleted;

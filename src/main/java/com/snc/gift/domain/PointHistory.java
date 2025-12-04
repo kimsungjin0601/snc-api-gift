@@ -16,11 +16,11 @@ public class PointHistory extends BaseDomain {
     @Schema(description="포인트_이력_번호")
     private Long historyNo;
 
-    @Schema(description="지점_번호(admin_no)")
-    private Long branchNo;
+    @Schema(description="파트너_번호")
+    private Long partnerNo;
 
-    @Schema(description="에이전트_번호(admin_no)")
-    private Long agentNo;
+    @Schema(description="상위_파트너_번호(에이전트)")
+    private Long parentPartnerNo;
 
     @Schema(description="주문_번호")
     private Long orderNo;
@@ -44,13 +44,13 @@ public class PointHistory extends BaseDomain {
     private Integer charge;
 
     @Schema(description="수수료_대리점")
-    private Integer feeBranch;
+    private Integer feeDealer;
 
     @Schema(description="이익금_에이전트")
     private Integer profitsAgent;
 
     @Schema(description="이익금_본사")
-    private Integer profitsHead;
+    private Integer profitsHq;
 
     @Schema(description="메모")
     private String memo;

@@ -18,26 +18,17 @@ public class Member extends BaseDomain {
     @Schema(description="회원_번호")
     private Long memberNo;
 
-    @Schema(description="도메인_번호")
-    private Long domainNo;
-
     @Schema(description="사용자_번호")
     private Long userNo;
 
     @Schema(description="보유_포인트")
     private Integer ownPoint;
 
-    @Schema(description="전화번호")
-    private String phone;
-
-    @Schema(description="이메일")
-    private String email;
-
     @Schema(description="주문_횟수")
     private Integer orderCnt;
 
     @Schema(description="주문_금액")
-    private Integer orderAmt;
+    private Integer orderAmount;
 
     @Schema(description="가입_일시")
     private Instant joinedAt;

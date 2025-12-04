@@ -6,24 +6,29 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.util.Date;
+
 @EqualsAndHashCode(callSuper = true)
 @Data
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Domain extends BaseDomain  {
+public class PartnerDomain extends BaseDomain  {
 
     @Schema(description="도메인_번호")
-    private Long domainNo;
+    private Long partnerDomainNo;
+
+    @Schema(description="파트너_번호")
+    private Long partnerNo;
 
     @Schema(description="도메인_명")
     private String domainName;
 
-    @Schema(description="관리자_번호(대리점번호)")
-    private Long adminNo;
+    @Schema(description="입금_계좌")
+    private String depositAccount;
 
-    @Schema(description="계좌_정보")
-    private String account;
+    @Schema(description="텔레그램_채널_ID")
+    private String telegramId;
 
 //    @Schema(description="삭제여부")
 //    private Boolean isDeleted;

@@ -6,6 +6,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.util.Date;
+
 @EqualsAndHashCode(callSuper = true)
 @Data
 @SuperBuilder
@@ -16,19 +18,31 @@ public class User extends BaseDomain {
     @Schema(description="사용자_번호")
     private Long userNo;
 
+    @Schema(description="파트너_번호")
+    private Long partnerNo;
+
     @Schema(description="로그인ID")
     private String loginId;
 
     @Schema(description="패스워드")
-    private String passwd;
+    private String password;
 
     @Schema(description="사용자명")
     private String userName;
 
-    @Schema(description="사용자등급")
+    @Schema(description="전화번호")
+    private String phone;
+
+    @Schema(description="이메일")
+    private String email;
+
+    @Schema(description="텔레그램_채널_ID")
+    private String telegramId;
+
+    @Schema(description="사용자등급(회원/대리점/에이전트/일반관리자/주문관리자)")
     private String userGrade;
 
-    @Schema(description="사용자 상태 (ACTIVE, INACTIVE)")
+    @Schema(description="사용자_상태(ACTIVE,INACTIVE)")
     private String userStatusCd;
 
 //    @Schema(description="삭제여부")

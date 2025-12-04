@@ -11,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Denomination extends BaseDomain  {
+public class ProductDenomination extends BaseDomain  {
 
     @Schema(description="권종_번호")
     private Long denominationNo;
@@ -22,13 +22,13 @@ public class Denomination extends BaseDomain  {
     @Schema(description="권종_금액")
     private Integer amount;
 
-    @Schema(description="판매가_(소비자_가격)")
+    @Schema(description="판매가(소비자_가격)")
     private Integer salePrice;
 
-    @Schema(description="공급가_(정산CP_단가)")
+    @Schema(description="공급가(정산CP_단가)")
     private Integer supplyPrice;
 
-    @Schema(description="PIN_재고_방식")
+    @Schema(description="PIN_재고_방식(API,POOL,FILE)")
     private String stockTypeCd;
 
     @Schema(description="판매_여부")
@@ -37,9 +37,18 @@ public class Denomination extends BaseDomain  {
     @Schema(description="일_최대_판매_수량")
     private Integer maxDailyQty;
 
+//    @Schema(description="삭제여부")
+//    private Boolean isDeleted;
+//
 //    @Schema(description="생성일시")
 //    private Date createdAt;
 //
+//    @Schema(description="생성자")
+//    private Long createdBy;
+//
 //    @Schema(description="수정일시")
 //    private Date updatedAt;
+//
+//    @Schema(description="수정자")
+//    private Long updatedBy;
 }

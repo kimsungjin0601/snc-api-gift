@@ -4,6 +4,7 @@ import com.cstify.common.base.BaseDomain;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.time.Instant;
+import java.util.Date;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -32,4 +33,7 @@ public class RTPayLog extends BaseDomain {
 
     @Schema(description="전송_데이터_전문")
     private String transData;
+
+//    @Schema(description="생성일시")
+//    private Date createdAt;
 }

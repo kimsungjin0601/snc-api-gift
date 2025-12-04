@@ -31,9 +31,9 @@ public class Category extends BaseDomain {
     @Schema(description="정렬_순서")
     private Integer sortOrder;
 
-//    @Schema(description="삭제여부")
-//    private Boolean isDeleted;
-//
+    @Schema(description="삭제여부")
+    private Boolean isDeleted;
+
 //    @Schema(description="생성일시")
 //    private Date createdAt;
 //
