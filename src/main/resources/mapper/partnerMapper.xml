@@ -1,0 +1,11 @@
+<!-- <?xml version=“1.0” encoding=“UTF-8” ?> -->
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.snc.gift.mapper.PartnerMapper">
+    <select id="getPartnerNoByDomain" parameterType="String" resultType="Long">
+        select partner_no
+          from partner_domain
+         where domain_name like concat('%',#{domainName},'%')
+         limit 1
+    </select>
+</mapper>

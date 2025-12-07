@@ -1,0 +1,60 @@
+<!-- <?xml version=“1.0” encoding=“UTF-8” ?> -->
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.snc.gift.mapper.UserMapper">
+    <select id="getUserInfo" resultType="UserInfo">
+        select t1.user_no
+             , t1.login_id
+             , t1.password
+             , t1.user_name
+             , t1.email as user_email
+             , t1.phone as user_mobile
+             , t1.user_grade
+             , t2.partner_no
+         from users t1
+              inner join user_partner t2 on t1.user_no = t2.user_no
+        where t1.login_id = #{loginId}
+          and t1.user_status_cd = 'ACTIVE'
+          and t1.is_deleted = false
+        limit 1
+    </select>
+
+    <select id="getUserInfoByUserNo" resultType="UserInfo">
+        select t1.user_no
+             , t1.login_id
+             , t1.password
+             , t1.user_name
+             , t1.email as user_email
+             , t1.phone as user_mobile
+             , t1.user_grade
+        from users t1
+        where t1.user_no = #{userNo}
+          and t1.user_status_cd = 'ACTIVE'
+          and t1.is_deleted = false
+    </select>
+
+    <select id="checkLoginId" resultType="Boolean">
+        select case when count(1) = 0 then 0 else 1 end as count
+        from users t1
+        where t1.login_id = #{loginId}
+    </select>
+
+    <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="userNo">
+        insert into users(login_id, password, user_name, user_grade, phone, email, user_status_cd)
+        values (#{loginId}, #{password}, #{userName}, #{userGrade}, #{phone}, #{email}, #{userStatusCd})
+    </insert>
+
+    <update id="updateUser" parameterType="User">
+        update users
+           set user_name = #{userName}
+             , phone = #{phone}
+             , email = #{email}
+        where login_id = #{loginId}
+          and is_deleted = false
+    </update>
+
+    <insert id="insertUserPartner" parameterType="UserPartner">
+        insert into user_partner (user_no, partner_no)
+        values (#{userNo}, #{partnerNo})
+    </insert>
+</mapper>

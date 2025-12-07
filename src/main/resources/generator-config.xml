@@ -14,27 +14,35 @@
                         userId="gift_adm"
                         password="gift_adm123!@#"/>
 
-        <javaModelGenerator targetPackage="com.snc.gift.domain"
+        <javaModelGenerator targetPackage="com.snc.gift.domain.temp"
                             targetProject="C:/project/snc/snc-api-gift/src/main/java"/>
 
 
         <!-- 생성할 테이블 -->
-        <table tableName="admin" domainObjectName="Admin"/>
         <table tableName="category" domainObjectName="Category"/>
         <table tableName="common_code" domainObjectName="CommonCode"/>
         <table tableName="common_code_group" domainObjectName="CommonCodeGroup"/>
-        <table tableName="domain" domainObjectName="Domain"/>
+        <table tableName="gift_pin" domainObjectName="GiftPin"/>
+        <table tableName="gift_pin_assignment" domainObjectName="GiftPinAssignment"/>
+        <table tableName="gift_pin_status_history" domainObjectName="GiftPinStatusHistory"/>
         <table tableName="member" domainObjectName="Member"/>
         <table tableName="member_block" domainObjectName="MemberBlock"/>
-        <table tableName="order_branch" domainObjectName="OrderBranch"/>
         <table tableName="order_gift" domainObjectName="OrderGift"/>
-        <table tableName="pin" domainObjectName="Pin"/>
+        <table tableName="order_gift_item" domainObjectName="OrderGiftItem"/>
+        <table tableName="order_gift_status_history" domainObjectName="OrderGiftStatusHistory"/>
+        <table tableName="order_partner" domainObjectName="OrderPartner"/>
+        <table tableName="order_partner_status_history" domainObjectName="OrderPartnerStatusHistory"/>
+        <table tableName="partner" domainObjectName="Partner"/>
+        <table tableName="partner_domain" domainObjectName="PartnerDomain"/>
+        <table tableName="payment" domainObjectName="Payment"/>
+        <table tableName="payment_status_history" domainObjectName="PaymentStatusHistory"/>
         <table tableName="point_history" domainObjectName="PointHistory"/>
         <table tableName="product" domainObjectName="Product"/>
-        <table tableName="denomination" domainObjectName="Denomination"/>
+        <table tableName="product_denomination" domainObjectName="ProductDenomination"/>
         <table tableName="product_desc" domainObjectName="ProductDesc"/>
         <table tableName="product_image" domainObjectName="ProductImage"/>
         <table tableName="rtpay_log" domainObjectName="RTPayLog"/>
+        <table tableName="tenant" domainObjectName="Tenant"/>
         <table tableName="users" domainObjectName="User"/>
     </context>
 </generatorConfiguration>

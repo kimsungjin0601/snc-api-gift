@@ -15,6 +15,8 @@
 		<package name="com.snc.gift.dto"/>
 	</typeAliases>
     <mappers>
-<!--		<mapper resource="mapper/userMapper.xml"/>-->
+        <mapper resource="mapper/accountMapper.xml"/>
+        <mapper resource="mapper/memberMapper.xml"/>
+		<mapper resource="mapper/userMapper.xml"/>
     </mappers>
 </configuration>
