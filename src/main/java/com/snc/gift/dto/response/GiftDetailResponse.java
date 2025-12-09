@@ -1,6 +1,5 @@
 package com.snc.gift.dto.response;
 
-import com.cstify.common.base.BaseVo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -11,7 +10,7 @@ import java.util.List;
 @Getter @Setter @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class GiftDetailResponse extends BaseVo {
+public class GiftDetailResponse {
 
     @Schema(description="상품권 정보")
     private GiftDetailDto giftInfo;

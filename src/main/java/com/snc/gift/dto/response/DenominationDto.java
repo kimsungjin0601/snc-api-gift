@@ -1,6 +1,5 @@
 package com.snc.gift.dto.response;
 
-import com.cstify.common.base.BaseVo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -9,7 +8,7 @@ import lombok.experimental.SuperBuilder;
 @Getter @Setter @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class DenominationDto extends BaseVo {
+public class DenominationDto {
 
     @Schema(description="권종_번호")
     private Long denominationNo;
