@@ -58,6 +58,9 @@ public class OrderGift extends BaseDomain {
     @Schema(description="최종_결제_금액")
     private Integer finalAmount;
 
+    @Schema(description="대표_상품명")
+    private String mainProductName;
+
     @Schema(description="주문자_명")
     private String ordererName;
 

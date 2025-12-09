@@ -36,6 +36,9 @@ public class Product extends BaseDomain {
     @Schema(description="상품상태코드 (판매중,품절,판매중지)")
     private String productStatusCd;
 
+    @Schema(description="상품유형코드 (실물,상품권)")
+    private String productTypeCd;
+
     @Schema(description="전시여부")
     private Boolean isDisplayed;
 

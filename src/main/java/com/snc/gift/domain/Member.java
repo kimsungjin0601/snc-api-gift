@@ -30,6 +30,12 @@ public class Member extends BaseDomain {
     @Schema(description="주문_금액")
     private Integer orderAmount;
 
+    @Schema(description="계좌_정보")
+    private String account;
+
+    @Schema(description="마케팅_수신동의")
+    private Boolean isMarketing;
+
     @Schema(description="가입_일시")
     private Instant joinedAt;
 
