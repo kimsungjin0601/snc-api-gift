@@ -26,6 +26,6 @@ public class SignRequest extends BaseVo {
     @Schema(description = "전화번호")
     private String phone;
 
-    @Schema(description = "이메일")
-    private String email;
+    @Schema(description = "마케팅_수신동의")
+    private Boolean isMarketing;
 }
