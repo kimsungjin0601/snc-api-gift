@@ -46,9 +46,10 @@
 
     <update id="updateUser" parameterType="User">
         update users
-           set user_name = #{userName}
-             , phone = #{phone}
+           set phone = #{phone}
              , email = #{email}
+             , updated_at = now()
+             , updated_by = #{updatedBy}
         where login_id = #{loginId}
           and is_deleted = false
     </update>

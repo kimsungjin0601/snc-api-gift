@@ -2,8 +2,27 @@
 <!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.snc.gift.mapper.MemberMapper">
+    <select id="getMemberInfo" resultType="MemberVo">
+        select t1.user_name
+             , t1.phone
+             , t2.account
+             , t2.is_marketing
+        from users t1
+             inner join member t2 on t1.user_no = t2.user_no
+        where t1.user_no = #{userNo}
+    </select>
+
     <insert id="insertMember" parameterType="Member">
-        insert into member(user_no)
-        values (#{userNo})
+        insert into member(user_no, is_marketing)
+        values (#{userNo}, #{isMarketing})
     </insert>
+
+    <update id="updateMemberByMe" parameterType="Member">
+        update member
+           set account = #{account}
+             , is_marketing = #{is_marketing}
+             , updated_at = now()
+             , updated_by = #{userNo}
+         where user_no = #{userNo}
+    </update>
 </mapper>
