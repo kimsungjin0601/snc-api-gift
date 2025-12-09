@@ -1,0 +1,52 @@
+<!-- <?xml version=“1.0” encoding=“UTF-8” ?> -->
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.snc.gift.mapper.GiftMapper">
+    <select id="getGiftMainList" resultType="GiftVo">
+        select t1.product_no
+             , t1.product_code
+             , t1.product_name
+             , t2.denomination_name
+             , t2.amount
+             , t2.sale_price
+             , concat(#{s3Domain}, t3.image_url) as image_url
+        from product t1
+             inner join product_denomination t2 on t1.product_no = t2.product_no
+             inner join  product_image t3 on t1.product_no = t3.product_no
+        where t1.is_deleted = false
+          and t2.is_deleted = false
+          and t3.is_deleted = false
+          and t1.is_displayed = true
+          and t3.image_type_cd = 'MAIN'
+        order by t1.display_rank, t2.amount desc
+    </select>
+
+    <select id="getGiftDetail" parameterType="Long" resultType="GiftVo">
+        select t1.product_no
+             , t1.product_code
+             , t1.product_name
+             , concat(#{s3Domain}, t3.image_url) as image_url
+        from product t1
+             inner join  product_image t3 on t1.product_no = t3.product_no
+        where t1.is_deleted = false
+          and t3.is_deleted = false
+          and t1.is_displayed = true
+          and t3.image_type_cd = 'DETAIL'
+          and t1.product_no = #{productNo}
+    </select>
+
+    <select id="getGiftDenominationList" parameterType="Long" resultType="GiftVo">
+        select t2.denomination_no
+             , t2.denomination_code
+             , t2.denomination_name
+             , t2.amount
+             , t2.sale_price
+        from product t1
+             inner join product_denomination t2 on t1.product_no = t2.product_no
+        where t1.is_deleted = false
+          and t2.is_deleted = false
+          and t1.is_displayed = true
+          and t1.product_no = #{productNo}
+        order by t1.display_rank, t2.amount desc
+    </select>
+</mapper>
