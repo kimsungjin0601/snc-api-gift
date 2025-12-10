@@ -10,7 +10,10 @@ import java.util.List;
 public interface GiftMapper {
     List<GiftVo> getGiftMainList(@Param("s3Domain") String s3Domain);
 
-    GiftVo getGiftDetail(@Param("productNo") Long productNo, @Param("s3Domain") String s3Domain);
+    GiftVo getGiftDetail(@Param("productCode") String productCode, @Param("s3Domain") String s3Domain);
 
     List<GiftVo> getGiftDenominationList(@Param("productNo") Long productNo);
+
+    GiftVo getGiftDenominationByCode(@Param("denominationCode") String denominationCode);
+
 }

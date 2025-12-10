@@ -1,6 +1,7 @@
 package com.snc.gift.dto.mapper;
 
 import com.cstify.common.dto.PageRequest;
+import com.snc.gift.dto.response.OrderGiftCompleteResponse;
 import com.snc.gift.dto.response.OrderGiftUserListDto;
 import com.snc.gift.dto.search.OrderGiftUserSearch;
 import com.snc.gift.vo.OrderGiftVo;
@@ -15,5 +16,7 @@ public interface OrderGiftDtoMapper {
     OrderGiftUserSearch toOrderGiftUserSearch(PageRequest request);
 
     List<OrderGiftUserListDto> toOrderGiftUserDtoList(List<OrderGiftVo> voList);
+
+    OrderGiftCompleteResponse toOrderGiftCompleteResponse(OrderGiftVo vo);
 
 }

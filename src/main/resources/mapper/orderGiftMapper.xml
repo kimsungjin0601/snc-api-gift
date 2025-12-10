@@ -20,4 +20,59 @@
         order by t1.order_no desc
         limit #{pageSize} offset #{offset}
     </select>
+
+    <select id="getOrderUserDetailByCode" resultType="OrderGiftVo">
+        select t1.order_code
+             , t1.main_product_name
+             , t1.order_at
+             , t4.code_name as order_status_name
+             , t1.final_amount
+             , t1.orderer_name
+             , t3.deposit_account
+        from order_gift t1
+             inner join user_partner t2 on t1.user_no = t2.user_no
+             inner join partner_domain t3 on t2.partner_no = t3.partner_no
+             inner join common_code t4 on t1.order_status_cd = t4.code and t4.code_group = 'ORDER_STATUS'
+        where t1.user_no = #{userNo}
+          and t1.order_code = #{orderCode}
+        limit 1
+    </select>
+
+    <insert id="insertOrder" parameterType="OrderGift" keyProperty="orderNo" useGeneratedKeys="true">
+        insert into order_gift (partner_no, parent_partner_no, user_no, order_code, order_status_cd,
+                                main_product_name, orderer_name, orderer_phone, orderer_email, created_by, updated_by)
+        values (#{partnerNo}, #{parentPartnerNo}, #{userNo}, #{orderCode}, #{orderStatusCd},
+                #{mainProductName}, #{ordererName}, #{ordererPhone}, #{ordererEmail}, #{createdBy}, #{updatedBy})
+    </insert>
+
+    <insert id="insertOrderItem" parameterType="OrderGiftItem" keyProperty="orderItemNo" useGeneratedKeys="true">
+        insert into order_gift_item (order_no, product_no, denomination_no, partner_domain_no, product_name,
+                                     qty, unit_price, discount_rate, discount_price, final_price, created_by, updated_by)
+        values (#{orderNo}, #{productNo}, #{denominationNo}, #{partnerDomainNo}, #{productName},
+                #{qty}, #{unitPrice}, #{discountRate}, #{discountPrice}, #{finalPrice}, #{createdBy}, #{updatedBy})
+    </insert>
+
+    <insert id="insertOrderStatusHistory" parameterType="OrderGiftStatusHistory">
+        insert into order_gift_status_history (order_no, prev_status_cd, status_cd, remark, created_by)
+        values (#{orderNo}, #{prevStatusCd}, #{statusCd}, #{remark}, #{createdBy})
+    </insert>
+
+    <update id="updateOrderAmount" parameterType="Long">
+        UPDATE order_gift og
+        SET
+            total_amount    = calc.total_amount,
+            discount_amount = calc.discount_amount,
+            final_amount    = calc.final_amount
+        FROM (
+                 SELECT
+                     order_no,
+                     coalesce(sum(unit_price * qty), 0) AS total_amount,
+                     coalesce(sum(discount_price), 0) AS discount_amount,
+                     coalesce(sum((unit_price - discount_price) * qty), 0) AS final_amount
+                 FROM order_gift_item
+                 WHERE order_no = #{orderNo}
+                 GROUP BY order_no
+             ) calc
+        WHERE og.order_no = calc.order_no;
+    </update>
 </mapper>
