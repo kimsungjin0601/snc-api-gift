@@ -1,19 +1,16 @@
 package com.snc.gift.dto.request;
 
-import com.cstify.common.base.BaseVo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 @SuperBuilder
-@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SignRequest extends BaseVo {
+public class SignRequest {
     @Schema(description = "로그인ID")
     private String loginId;
 
