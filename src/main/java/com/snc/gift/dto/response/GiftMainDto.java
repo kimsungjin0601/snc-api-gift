@@ -10,9 +10,6 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 public class GiftMainDto {
 
-    @Schema(description="상품번호")
-    private Long productNo;
-
     @Schema(description="상품코드")
     private String productCode;
 
