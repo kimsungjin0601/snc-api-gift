@@ -21,7 +21,7 @@
         order by t1.display_rank, t2.amount desc
     </select>
 
-    <select id="getGiftDetail" parameterType="Long" resultType="GiftVo">
+    <select id="getGiftDetail" resultType="GiftVo">
         select t1.product_no
              , t1.product_code
              , t1.product_name
@@ -32,11 +32,14 @@
           and t3.is_deleted = false
           and t1.is_displayed = true
           and t3.image_type_cd = 'DETAIL'
-          and t1.product_no = #{productNo}
+          and t1.product_code = #{productCode}
     </select>
 
     <select id="getGiftDenominationList" parameterType="Long" resultType="GiftVo">
-        select t2.denomination_no
+        select t1.product_no
+             , t1.product_code
+             , t1.product_name
+             , t2.denomination_no
              , t2.denomination_code
              , t2.denomination_name
              , t2.amount
@@ -47,6 +50,26 @@
           and t2.is_deleted = false
           and t1.is_displayed = true
           and t1.product_no = #{productNo}
+        order by t1.display_rank, t2.amount desc
+    </select>
+
+    <select id="getGiftDenominationByCode" parameterType="String" resultType="GiftVo">
+        select t1.product_no
+             , t1.product_code
+             , t1.product_name
+             , t2.denomination_no
+             , t2.denomination_code
+             , t2.denomination_name
+             , t2.amount
+             , t2.sale_price
+             , t2.discount_rate
+             , t2.discount_price
+        from product t1
+             inner join product_denomination t2 on t1.product_no = t2.product_no
+        where t1.is_deleted = false
+          and t2.is_deleted = false
+          and t1.is_displayed = true
+          and t2.denomination_code = #{denominationCode}
         order by t1.display_rank, t2.amount desc
     </select>
 </mapper>

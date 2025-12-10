@@ -20,9 +20,9 @@ public class GiftService {
     private final GiftDtoMapper giftDtoMapper;
     private final GiftMapper giftMapper;
 
-    public GiftDetailResponse getGiftDetail(Long productNo) {
-        GiftVo giftDetail = giftMapper.getGiftDetail(productNo, s3Domain);
-        List<GiftVo> denominationList = giftMapper.getGiftDenominationList(productNo);
+    public GiftDetailResponse getGiftDetail(String productCode) {
+        GiftVo giftDetail = giftMapper.getGiftDetail(productCode, s3Domain);
+        List<GiftVo> denominationList = giftMapper.getGiftDenominationList(giftDetail.getProductNo());
 
         return GiftDetailResponse.builder()
                 .giftInfo(giftDtoMapper.toGiftDetailDto(giftDetail))

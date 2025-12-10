@@ -23,8 +23,8 @@ public class GiftController {
     private final GiftService giftService;
 
     @Operation(summary = "상품권_상세", description = "상품권_상세")
-    @GetMapping("/{productNo}")
-    public GiftDetailResponse getGiftDetail(@PathVariable("productNo") Long productNo) {
-        return giftService.getGiftDetail(productNo);
+    @GetMapping("/{productCode}")
+    public GiftDetailResponse getGiftDetail(@PathVariable String productCode) {
+        return giftService.getGiftDetail(productCode);
     }
 }
