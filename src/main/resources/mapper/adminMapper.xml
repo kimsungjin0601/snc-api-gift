@@ -1,0 +1,36 @@
+<!-- <?xml version=“1.0” encoding=“UTF-8” ?> -->
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.snc.gift.mapper.AdminMapper">
+    <select id="getAdminCount" parameterType="AdminSearch" resultType="Integer">
+        select count(1)
+        from users t1
+             inner join user_partner t2 on t1.user_no = t2.user_no
+             inner join partner t3 on t2.partner_no = t3.partner_no
+             inner join partner t4 on t3.parent_partner_no = t4.partner_no
+             inner join common_code t5 on t3.partner_type_cd = t5.code and t5.code_group = 'PARTNER'
+             inner join common_code t6 on t1.user_status_cd = t6.code and t6.code_group = 'USER_STATUS'
+    </select>
+
+    <select id="getAdminList" parameterType="AdminSearch" resultType="AdminVo">
+        select t1.user_no
+             , t1.login_id
+             , t1.user_name
+             , t1.telegram_id
+             , t5.code_name as partner_type_name
+             , t4.partner_name as parent_partner_name
+             , t3.own_point
+             , t3.charge
+             , t3.partner_no
+             , t1.created_at
+             , t6.code_name as user_status_name
+        from users t1
+             inner join user_partner t2 on t1.user_no = t2.user_no
+             inner join partner t3 on t2.partner_no = t3.partner_no
+             inner join partner t4 on t3.parent_partner_no = t4.partner_no
+             inner join common_code t5 on t3.partner_type_cd = t5.code and t5.code_group = 'PARTNER'
+             inner join common_code t6 on t1.user_status_cd = t6.code and t6.code_group = 'USER_STATUS'
+        order by t1.user_no desc
+        limit #{pageSize} offset #{offset}
+    </select>
+</mapper>
