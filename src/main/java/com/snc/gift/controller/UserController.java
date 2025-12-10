@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 })
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/auth")
 public class UserController {
     @Operation(summary = "로그인 한 사용자 정보", description = "로그인 한 사용자 정보")
     @GetMapping("/me")

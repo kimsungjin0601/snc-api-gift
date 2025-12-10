@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
-@Tag(name = "로그 아웃", description = "로그 아웃 관련 API")
+@Tag(name = "공통-로그 아웃", description = "로그 아웃 관련 API")
 @ApiResponses(value = {
         @ApiResponse(responseCode = "200" , description = "OK"),
         @ApiResponse(responseCode = "500" , description = "Internal Server Error")

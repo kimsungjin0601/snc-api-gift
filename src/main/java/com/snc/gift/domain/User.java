@@ -37,10 +37,10 @@ public class User extends BaseDomain {
     @Schema(description="텔레그램_채널_ID")
     private String telegramId;
 
-    @Schema(description="사용자등급(회원/대리점/에이전트/일반관리자/주문관리자)")
+    @Schema(description="사용자등급")
     private String userGrade;
 
-    @Schema(description="사용자_상태(ACTIVE,INACTIVE)")
+    @Schema(description="사용자_상태")
     private String userStatusCd;
 
 //    @Schema(description="삭제여부")

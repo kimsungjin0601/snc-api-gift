@@ -11,19 +11,39 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AdminListDto {
+    @Schema(description="파트너_번호")
+    private Long partnerNo;
 
-    @Schema(description="대표_상품명")
-    private String mainProductName;
+    @Schema(description="사용자_번호")
+    private Long userNo;
 
-    @Schema(description="주문상태_코드")
-    private String orderStatusCd;
+    @Schema(description="로그인_ID")
+    private String loginId;
 
-    @Schema(description="주문상태_명")
-    private String orderStatusName;
+    @Schema(description="사용자명")
+    private String userName;
 
-    @Schema(description="최종_결제_금액")
-    private Integer finalAmount;
+    @Schema(description="회원_번호")
+    private Long memberNo;
 
-    @Schema(description="주문_일시")
-    private Instant orderAt;
+    @Schema(description="텔레그램_채널_ID")
+    private String telegramId;
+
+    @Schema(description="파트너_유형명")
+    private String partnerTypeName;
+
+    @Schema(description="상위_파트너_명")
+    private String parentPartnerName;
+
+    @Schema(description="보유_포인트")
+    private Long ownPoint;
+
+    @Schema(description="건당_수수료")
+    private Integer charge;
+
+    @Schema(description="생성일시")
+    private Instant createdAt;
+
+    @Schema(description="사용자_상태_명")
+    private String userStatusName;
 }

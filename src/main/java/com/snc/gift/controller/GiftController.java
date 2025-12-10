@@ -11,14 +11,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
-@Tag(name = "상품권", description = "상품권 관련 API")
+@Tag(name = "SHOP-상품권", description = "상품권 관련 API")
 @ApiResponses(value = {
         @ApiResponse(responseCode = "200" , description = "OK"),
         @ApiResponse(responseCode = "500" , description = "Internal Server Error")
 })
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/client/gift")
+@RequestMapping("/api/front/gift")
 public class GiftController {
     private final GiftService giftService;
 

@@ -7,6 +7,7 @@ import com.cstify.common.vo.UserInfo;
 import com.snc.gift.dto.request.OrderGiftCreateRequest;
 import com.snc.gift.dto.response.OrderGiftCompleteResponse;
 import com.snc.gift.dto.response.OrderGiftCreateResponse;
+import com.snc.gift.dto.response.OrderGiftUserListDto;
 import com.snc.gift.service.OrderGiftService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -25,18 +26,18 @@ import org.springframework.web.bind.annotation.*;
 })
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/client/order/gift")
+@RequestMapping("/api/front/order/gift")
 public class OrderGiftController {
     private final OrderGiftService orderGiftService;
 
     @Operation(summary = "주문_내역", description = "주문_내역")
-    @GetMapping("/list")
-    public PageResponse getOrderList(@Parameter(hidden = true) @User UserInfo userInfo, PageRequest params) {
+    @GetMapping("")
+    public PageResponse<OrderGiftUserListDto> getOrderList(@Parameter(hidden = true) @User UserInfo userInfo, PageRequest params) {
         return orderGiftService.getOrderList(userInfo, params);
     }
 
     @Operation(summary = "주문_생성", description = "주문_생성")
-    @PostMapping("/create")
+    @PostMapping("")
     public OrderGiftCreateResponse createOrder(@Parameter(hidden = true) @User UserInfo userInfo,
                                                @RequestBody OrderGiftCreateRequest params) {
         return orderGiftService.createOrder(userInfo, params);

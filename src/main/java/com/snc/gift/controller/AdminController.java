@@ -5,6 +5,7 @@ import com.cstify.common.annotation.CustomAnnotation.User;
 import com.cstify.common.dto.PageRequest;
 import com.cstify.common.dto.PageResponse;
 import com.cstify.common.vo.UserInfo;
+import com.snc.gift.dto.response.AdminListDto;
 import com.snc.gift.service.AdminService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -16,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
-@Tag(name = "관리자 계정", description = "관리자 계정 관련 API")
+@Tag(name = "ADMIN-관리자", description = "관리자 관련 API")
 @ApiResponses(value = {
         @ApiResponse(responseCode = "200" , description = "OK"),
         @ApiResponse(responseCode = "500" , description = "Internal Server Error")
@@ -29,7 +30,7 @@ public class AdminController {
 
     @Operation(summary = "관리자 목록", description = "관리자 목록")
     @GetMapping("")
-    public PageResponse getAdminList(@Parameter(hidden = true) @User UserInfo userInfo, PageRequest params) {
+    public PageResponse<AdminListDto> getAdminList(@Parameter(hidden = true) @User UserInfo userInfo, PageRequest params) {
         return adminService.getAdminList(userInfo, params);
     }
 }

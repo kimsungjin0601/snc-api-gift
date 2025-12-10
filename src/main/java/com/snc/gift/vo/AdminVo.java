@@ -13,36 +13,39 @@ import java.time.Instant;
 @AllArgsConstructor
 public class AdminVo extends BaseVo {
 
-    @Schema(description="회원_번호")
-    private Long memberNo;
+    @Schema(description="파트너_번호")
+    private Long partnerNo;
 
     @Schema(description="사용자_번호")
     private Long userNo;
 
+    @Schema(description="로그인_ID")
+    private String loginId;
+
     @Schema(description="사용자명")
     private String userName;
 
-    @Schema(description="전화번호")
-    private String phone;
+    @Schema(description="회원_번호")
+    private Long memberNo;
+
+    @Schema(description="텔레그램_채널_ID")
+    private String telegramId;
+
+    @Schema(description="파트너_유형명")
+    private String partnerTypeName;
+
+    @Schema(description="상위_파트너_명")
+    private String parentPartnerName;
 
     @Schema(description="보유_포인트")
-    private Integer ownPoint;
+    private Long ownPoint;
 
-    @Schema(description="주문_횟수")
-    private Integer orderCnt;
+    @Schema(description="건당_수수료")
+    private Integer charge;
 
-    @Schema(description="주문_금액")
-    private Integer orderAmount;
+    @Schema(description="생성일시")
+    private Instant createdAt;
 
-    @Schema(description="계좌_정보")
-    private String account;
-
-    @Schema(description="마케팅_수신동의")
-    private Boolean isMarketing;
-
-    @Schema(description="가입_일시")
-    private Instant joinedAt;
-
-    @Schema(description="탈퇴_일시")
-    private Instant withdrawnAt;
+    @Schema(description="사용자_상태_명")
+    private String userStatusName;
 }

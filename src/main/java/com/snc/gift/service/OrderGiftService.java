@@ -14,6 +14,7 @@ import com.snc.gift.dto.request.DenominationCreateDto;
 import com.snc.gift.dto.request.OrderGiftCreateRequest;
 import com.snc.gift.dto.response.OrderGiftCompleteResponse;
 import com.snc.gift.dto.response.OrderGiftCreateResponse;
+import com.snc.gift.dto.response.OrderGiftUserListDto;
 import com.snc.gift.dto.search.OrderGiftUserSearch;
 import com.snc.gift.mapper.GiftMapper;
 import com.snc.gift.mapper.OrderGiftMapper;
@@ -39,10 +40,8 @@ public class OrderGiftService {
     private final PartnerMapper partnerMapper;
     private final GiftMapper giftMapper;
 
-    public PageResponse getOrderList(UserInfo userInfo, PageRequest params){
+    public PageResponse<OrderGiftUserListDto> getOrderList(UserInfo userInfo, PageRequest params){
         OrderGiftUserSearch search = orderGiftDtoMapper.toOrderGiftUserSearch(params, userInfo.getUserNo());  // 검색_DTO
-//        search.setUserNo(userInfo.getUserNo());
-
         Integer totCnt = orderGiftMapper.getOrderUserCount(search);         // 건수_조회
         List<OrderGiftVo> list = orderGiftMapper.getOrderUserList(search);  // 목록_조회
         return ResponseUtil.getPageResponse(PageDto.of(params, totCnt), orderGiftDtoMapper.toOrderGiftUserDtoList(list));

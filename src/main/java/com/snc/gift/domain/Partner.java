@@ -17,13 +17,13 @@ public class Partner extends BaseDomain {
     @Schema(description="파트너_번호")
     private Long partnerNo;
 
-    @Schema(description="상위_파트너_번호(에이전트)")
+    @Schema(description="상위_파트너_번호")
     private Long parentPartnerNo;
 
     @Schema(description="테넌트_번호")
     private Long tenantNo;
 
-    @Schema(description="파트너_유형코드(AGENT/DEALER)")
+    @Schema(description="파트너_유형코드")
     private String partnerTypeCd;
 
     @Schema(description="파트너_코드(외부식별자)")

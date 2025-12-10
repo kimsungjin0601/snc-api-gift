@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 })
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/client/main")
+@RequestMapping("/api/front/main")
 public class MainController {
     private final MainService mainService;
 
