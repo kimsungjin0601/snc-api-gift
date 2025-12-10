@@ -40,6 +40,12 @@ public class ProductDenomination extends BaseDomain  {
     @Schema(description="일_최대_판매_수량")
     private Integer maxDailyQty;
 
+    @Schema(description="할인율")
+    private Float discountRate;
+
+    @Schema(description="할인가")
+    private Integer discountPrice;
+
 //    @Schema(description="삭제여부")
 //    private Boolean isDeleted;
 //

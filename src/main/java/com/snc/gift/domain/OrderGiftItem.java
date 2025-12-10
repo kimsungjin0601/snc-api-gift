@@ -38,7 +38,10 @@ public class OrderGiftItem extends BaseDomain {
     @Schema(description="단가")
     private Integer unitPrice;
 
-    @Schema(description="차감_금액")
+    @Schema(description="할인율")
+    private Float discountRate;
+
+    @Schema(description="개당_할인가")
     private Integer discountPrice;
 
     @Schema(description="최종_금액")

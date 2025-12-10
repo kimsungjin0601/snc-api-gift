@@ -69,4 +69,7 @@ public class OrderGiftVo extends BaseVo {
 
     @Schema(description="주문자_이메일")
     private String ordererEmail;
+
+    @Schema(description="입금_계좌")
+    private String depositAccount;
 }

@@ -35,6 +35,12 @@ public class GiftVo extends BaseVo {
     @Schema(description="판매가(소비자_가격)")
     private Integer salePrice;
 
+    @Schema(description="할인율")
+    private Float discountRate;
+
+    @Schema(description="개당_할인가")
+    private Integer discountPrice;
+
     @Schema(description="이미지_URL")
     private String imageUrl;
 }
