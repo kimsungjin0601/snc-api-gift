@@ -10,9 +10,7 @@
              , t1.email as user_email
              , t1.phone as user_mobile
              , t1.user_grade
-             , t2.partner_no
          from users t1
-              inner join user_partner t2 on t1.user_no = t2.user_no
         where t1.login_id = #{loginId}
           and t1.user_status_cd = 'ACTIVE'
           and t1.is_deleted = false
