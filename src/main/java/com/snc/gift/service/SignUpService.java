@@ -1,5 +1,7 @@
 package com.snc.gift.service;
 
+import com.cstify.common.exception.DuplicateException;
+import com.cstify.common.exception.NotFoundException;
 import com.snc.gift.domain.Member;
 import com.snc.gift.domain.User;
 import com.snc.gift.domain.UserPartner;
@@ -8,7 +10,6 @@ import com.snc.gift.dto.request.SignRequest;
 import com.snc.gift.mapper.MemberMapper;
 import com.snc.gift.mapper.PartnerMapper;
 import com.snc.gift.mapper.UserMapper;
-import com.cstify.common.exception.BizException;
 import com.snc.gift.type.UserStatusType;
 import com.snc.gift.type.UserType;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,7 +31,7 @@ public class SignUpService {
         // 로그인 ID 중복 체크
         boolean isDuplicate = userMapper.checkLoginId(params.getLoginId());
         if(isDuplicate){
-            throw new BizException(900, "LOGIN_ID_DUPLICATE");
+            throw new DuplicateException("LOGIN_ID_DUPLICATE");
         }
 
         User user = userDtoMapper.toUser(params);
@@ -46,7 +47,7 @@ public class SignUpService {
         // 파트너 등록
         Long partnerNo = partnerMapper.getPartnerNoByDomain(request.getServerName());
         if(partnerNo == null){
-            throw new BizException(901, "PARTNER_NOT_FOUND");
+            throw new NotFoundException("PARTNER_NOT_FOUND");
         }
 
         UserPartner userPartner = UserPartner.builder().userNo(user.getUserNo()).partnerNo(partnerNo).build();
