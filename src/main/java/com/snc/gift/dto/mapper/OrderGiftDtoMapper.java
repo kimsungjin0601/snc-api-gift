@@ -13,7 +13,7 @@ import java.util.List;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE, builder = @Builder(disableBuilder = true))
 public interface OrderGiftDtoMapper {
-    OrderGiftUserSearch toOrderGiftUserSearch(PageRequest request);
+    OrderGiftUserSearch toOrderGiftUserSearch(PageRequest request, Long userNo);
 
     List<OrderGiftUserListDto> toOrderGiftUserDtoList(List<OrderGiftVo> voList);
 

@@ -9,9 +9,11 @@
          limit 1
     </select>
 
-    <select id="getPartnerUser" resultType="PartnerVo">
+    <select id="getUserPartner" resultType="PartnerVo">
         select t3.tenant_no
              , t3.partner_no
+             , t3.partner_code
+             , t3.partner_name
              , t3.parent_partner_no
              , t4.partner_domain_no
           from users t1

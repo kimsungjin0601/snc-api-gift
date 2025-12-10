@@ -7,14 +7,13 @@
              , t1.login_id
              , t1.password
              , t1.user_name
-             , t1.email as user_email
-             , t1.phone as user_mobile
+             , t1.email
+             , t1.phone
              , t1.user_grade
          from users t1
         where t1.login_id = #{loginId}
           and t1.user_status_cd = 'ACTIVE'
           and t1.is_deleted = false
-        limit 1
     </select>
 
     <select id="getUserInfoByUserNo" resultType="UserInfo">
@@ -22,8 +21,8 @@
              , t1.login_id
              , t1.password
              , t1.user_name
-             , t1.email as user_email
-             , t1.phone as user_mobile
+             , t1.email
+             , t1.phone
              , t1.user_grade
         from users t1
         where t1.user_no = #{userNo}

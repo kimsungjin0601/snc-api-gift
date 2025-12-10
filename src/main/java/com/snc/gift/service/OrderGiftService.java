@@ -40,8 +40,8 @@ public class OrderGiftService {
     private final GiftMapper giftMapper;
 
     public PageResponse getOrderList(UserInfo userInfo, PageRequest params){
-        OrderGiftUserSearch search = orderGiftDtoMapper.toOrderGiftUserSearch(params);  // 검색_DTO
-        search.setUserNo(userInfo.getUserNo());
+        OrderGiftUserSearch search = orderGiftDtoMapper.toOrderGiftUserSearch(params, userInfo.getUserNo());  // 검색_DTO
+//        search.setUserNo(userInfo.getUserNo());
 
         Integer totCnt = orderGiftMapper.getOrderUserCount(search);         // 건수_조회
         List<OrderGiftVo> list = orderGiftMapper.getOrderUserList(search);  // 목록_조회
@@ -51,7 +51,7 @@ public class OrderGiftService {
     public OrderGiftCreateResponse createOrder(UserInfo userInfo, OrderGiftCreateRequest params){
         String orderCode = CodeUtil.orderCode();
 
-        PartnerVo partner = partnerMapper.getPartnerUser(userInfo.getUserNo());   // 파트너 정보
+        PartnerVo partner = partnerMapper.getUserPartner(userInfo.getUserNo());   // 파트너 정보
 
         // 대표_상품
         String mainProductName = null;

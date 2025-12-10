@@ -10,10 +10,16 @@ import java.io.Serial;
 @SuperBuilder
 @Getter @Setter @ToString
 @NoArgsConstructor @AllArgsConstructor
-public class OrderGiftUserSearch extends PageSearch {
+public class PartnerSearch extends PageSearch {
     @Serial
     private static final long serialVersionUID = -4531833874688336927L;
 
     @Schema(description="사용자_번호")
     private Long userNo;
+
+    @Schema(description="파트너_번호")
+    private Long partnerNo;
+
+    @Schema(description="파트너_번호")
+    private Long parentPartnerNo;
 }

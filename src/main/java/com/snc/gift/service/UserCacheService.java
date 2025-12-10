@@ -2,8 +2,11 @@ package com.snc.gift.service;
 
 import com.cstify.common.provider.RedisProvider;
 import com.cstify.common.vo.UserInfo;
+import com.snc.gift.mapper.PartnerMapper;
 import com.snc.gift.mapper.UserMapper;
+import com.snc.gift.vo.PartnerVo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
@@ -16,6 +19,8 @@ public class UserCacheService {
 
     private final UserMapper userMapper;
 
+    private final PartnerMapper partnerMapper;
+
     private final Duration ttl = Duration.ofHours(1);
 
     private String getKey(Long userNo) {
@@ -25,6 +30,7 @@ public class UserCacheService {
     public UserInfo getUser(String username) {
         UserInfo userInfo = userMapper.getUserInfo(username);
         if(userInfo != null) {
+            this.getUserPartner(userInfo);
             String key = getKey(userInfo.getUserNo());
             redisProvider.set(key, userInfo, ttl);
         }
@@ -54,5 +60,10 @@ public class UserCacheService {
     public void updateUser(UserInfo userInfo) {
         String key = getKey(userInfo.getUserNo());
         redisProvider.set(key, userInfo, ttl);
+    }
+
+    private void getUserPartner(UserInfo userInfo) {
+        PartnerVo partner = partnerMapper.getUserPartner(userInfo.getUserNo());
+        BeanUtils.copyProperties(partner, userInfo);
     }
 }

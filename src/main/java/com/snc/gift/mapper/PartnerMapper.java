@@ -8,5 +8,5 @@ import org.apache.ibatis.annotations.Param;
 public interface PartnerMapper {
     Long getPartnerNoByDomain(@Param("domainName") String domainName);
 
-    PartnerVo getPartnerUser(@Param("userNo") Long userNo);
+    PartnerVo getUserPartner(@Param("userNo") Long userNo);
 }
