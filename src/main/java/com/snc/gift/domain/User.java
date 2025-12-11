@@ -19,7 +19,7 @@ public class User extends BaseDomain {
     @Schema(description="파트너_번호")
     private Long partnerNo;
 
-    @Schema(description="로그인ID")
+    @Schema(description="로그인_ID")
     private String loginId;
 
     @Schema(description="패스워드")

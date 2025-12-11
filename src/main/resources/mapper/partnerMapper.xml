@@ -23,4 +23,9 @@
          where t1.user_no = #{userNo}
          limit 1
     </select>
+
+    <insert id="insertPartner" parameterType="Partner" useGeneratedKeys="true" keyProperty="partnerNo">
+        insert into partner(parent_partner_no, tenant_no, partner_type_cd, partner_code, partner_name, created_by, updated_by)
+        values (#{parentPartnerNo}, #{tenantNo}, #{partnerTypeCd}, #{partnerCode}, #{partnerName}, #{createdBy}, #{updatedBy})
+    </insert>
 </mapper>

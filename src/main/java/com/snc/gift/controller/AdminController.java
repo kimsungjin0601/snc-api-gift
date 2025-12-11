@@ -5,6 +5,7 @@ import com.cstify.common.annotation.CustomAnnotation.User;
 import com.cstify.common.dto.PageRequest;
 import com.cstify.common.dto.PageResponse;
 import com.cstify.common.vo.UserInfo;
+import com.snc.gift.dto.request.AdminCreateRequest;
 import com.snc.gift.dto.response.AdminListDto;
 import com.snc.gift.service.AdminService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -28,9 +29,16 @@ import org.springframework.web.bind.annotation.*;
 public class AdminController {
     private final AdminService adminService;
 
-    @Operation(summary = "관리자 목록", description = "관리자 목록")
+    @Operation(summary = "관리자_목록", description = "관리자_목록")
     @GetMapping("")
     public PageResponse<AdminListDto> getAdminList(@Parameter(hidden = true) @User UserInfo userInfo, PageRequest params) {
         return adminService.getAdminList(userInfo, params);
+    }
+
+    @Operation(summary = "관리자_등록", description = "관리자_등록<br/><br>partnerTypeCd (총본사:SUPER_HQ, 본사:HQ, 대리점:AGENT) " +
+                                                              "<br/>roleCd (일반:ADMIN, 매입:ORDER)")
+    @PostMapping("")
+    public void createAdmin(@Parameter(hidden = true) @User UserInfo userInfo, @RequestBody AdminCreateRequest params) {
+        adminService.createAdmin(userInfo, params);
     }
 }
