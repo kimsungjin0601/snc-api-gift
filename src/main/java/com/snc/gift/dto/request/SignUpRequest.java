@@ -10,7 +10,7 @@ import lombok.experimental.SuperBuilder;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SignRequest {
+public class SignUpRequest {
     @Schema(description = "로그인ID")
     private String loginId;
 

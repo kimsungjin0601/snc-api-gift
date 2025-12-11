@@ -4,7 +4,7 @@ package com.snc.gift.controller;
 import com.cstify.common.annotation.CustomAnnotation.User;
 import com.cstify.common.vo.UserInfo;
 import com.snc.gift.dto.request.MemberUpdateRequest;
-import com.snc.gift.dto.request.SignRequest;
+import com.snc.gift.dto.request.SignUpRequest;
 import com.snc.gift.dto.response.MemberInfoResponse;
 import com.snc.gift.service.MemberService;
 import com.snc.gift.service.SignUpService;
@@ -36,7 +36,7 @@ public class MemberController {
     @ApiResponse(responseCode = "404", description = "PARTNER_NOT_FOUND")
     @ApiResponse(responseCode = "409", description = "LOGIN_ID_DUPLICATE")
     @PostMapping("/sign-up")
-    public void signup(@RequestBody SignRequest params, HttpServletRequest request, HttpServletResponse response) {
+    public void signup(@RequestBody SignUpRequest params, HttpServletRequest request, HttpServletResponse response) {
         signUpService.signup(params, request, response);
     }
 

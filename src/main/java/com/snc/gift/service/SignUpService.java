@@ -6,7 +6,7 @@ import com.snc.gift.domain.Member;
 import com.snc.gift.domain.User;
 import com.snc.gift.domain.UserPartner;
 import com.snc.gift.dto.mapper.UserDtoMapper;
-import com.snc.gift.dto.request.SignRequest;
+import com.snc.gift.dto.request.SignUpRequest;
 import com.snc.gift.mapper.MemberMapper;
 import com.snc.gift.mapper.PartnerMapper;
 import com.snc.gift.mapper.UserMapper;
@@ -27,7 +27,7 @@ public class SignUpService {
     private final MemberMapper memberMapper;
     private final PartnerMapper partnerMapper;
 
-    public void signup(SignRequest params, HttpServletRequest request, HttpServletResponse response){
+    public void signup(SignUpRequest params, HttpServletRequest request, HttpServletResponse response){
         // 로그인 ID 중복 체크
         boolean isDuplicate = userMapper.checkLoginId(params.getLoginId());
         if(isDuplicate){
