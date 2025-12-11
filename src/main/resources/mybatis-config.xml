@@ -20,6 +20,7 @@
         <mapper resource="mapper/memberMapper.xml"/>
         <mapper resource="mapper/orderGiftMapper.xml"/>
         <mapper resource="mapper/partnerMapper.xml"/>
+		<mapper resource="mapper/tenantMapper.xml"/>
 		<mapper resource="mapper/userMapper.xml"/>
     </mappers>
 </configuration>
