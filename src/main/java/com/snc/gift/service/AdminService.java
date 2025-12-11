@@ -15,10 +15,12 @@ import com.snc.gift.dto.response.AdminListDto;
 import com.snc.gift.dto.search.AdminSearch;
 import com.snc.gift.mapper.AdminMapper;
 import com.snc.gift.mapper.PartnerMapper;
+import com.snc.gift.mapper.TenantMapper;
 import com.snc.gift.mapper.UserMapper;
 import com.snc.gift.type.UserStatusType;
 import com.snc.gift.vo.AdminVo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,10 +29,13 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class AdminService {
+    private final PasswordEncoder passwordEncoder;
+
     private final AdminDtoMapper adminDtoMapper;
     private final AdminMapper adminMapper;
     private final UserMapper userMapper;
     private final PartnerMapper partnerMapper;
+    private final TenantMapper tenantMapper;
 
     public PageResponse<AdminListDto> getAdminList(UserInfo userInfo, PageRequest params){
         AdminSearch search = adminDtoMapper.toAdminSearch(params, userInfo);  // 검색_DTO
@@ -41,8 +46,13 @@ public class AdminService {
 
     @Transactional
     public void createAdmin(UserInfo userInfo, AdminCreateRequest params){
+        if(userInfo.getTenantNo() == null){
+            userInfo.setTenantNo(tenantMapper.getTenantByDefault().getTenantNo());
+        }
+
         // insert users
         String userGrade = params.getPartnerTypeCd() + "_" + params.getRoleCd();
+        params.setPassword(passwordEncoder.encode(params.getPassword()));
         User user = adminDtoMapper.toUser(params, userGrade, UserStatusType.ACTIVE.getCode());
         userMapper.insertUser(user);
 
@@ -59,5 +69,4 @@ public class AdminService {
         // insert user_partner
         userMapper.insertUserPartner(UserPartner.builder().userNo(user.getUserNo()).partnerNo(partner.getPartnerNo()).build());
     }
-
 }

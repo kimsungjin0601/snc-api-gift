@@ -18,7 +18,8 @@ public enum UserType {
     AGENT_ADMIN("AGENT_ADMIN", "","에이전트"),
     HQ_ORDER("HQ_ORDER", "","본사_주문관리자"),
     HQ_ADMIN("HQ_ADMIN", "","본사_관리자"),
-    SUPER_HQ_ADMIN("SUPER_HQ_ADMIN", "","총본사_관리자");
+    SUPER_HQ_ADMIN("SUPER_HQ_ADMIN", "","총본사_관리자"),
+    SYSTEM_ADMIN("SYSTEM_ADMIN", "","시스템_관리자");
 
     private final String code;
     private final String msgKey;
