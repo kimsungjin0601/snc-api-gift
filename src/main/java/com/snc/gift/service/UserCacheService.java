@@ -64,6 +64,8 @@ public class UserCacheService {
 
     private void getUserPartner(UserInfo userInfo) {
         PartnerVo partner = partnerMapper.getUserPartner(userInfo.getUserNo());
-        BeanUtils.copyProperties(partner, userInfo);
+        if(partner != null) {
+            BeanUtils.copyProperties(partner, userInfo);
+        }
     }
 }

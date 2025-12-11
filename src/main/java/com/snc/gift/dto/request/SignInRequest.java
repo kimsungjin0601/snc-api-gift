@@ -10,19 +10,10 @@ import lombok.experimental.SuperBuilder;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SignUpRequest {
+public class SignInRequest {
     @Schema(description = "로그인_ID")
     private String loginId;
 
     @Schema(description = "패스워드")
     private String password;
-
-    @Schema(description = "사용자명")
-    private String userName;
-
-    @Schema(description = "전화번호")
-    private String phone;
-
-    @Schema(description = "마케팅_수신동의")
-    private Boolean isMarketing;
 }
