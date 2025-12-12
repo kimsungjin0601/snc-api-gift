@@ -8,8 +8,11 @@ import com.snc.gift.vo.PartnerVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -51,6 +54,16 @@ public class UserCacheService {
         }
 
         return userInfo;
+    }
+
+    public List<String> getUserAuthorities(Long userNo) {
+        UserInfo userInfo = getUser(userNo);
+        List<String> roles = userInfo.getRoles();
+        if (CollectionUtils.isEmpty(roles)) {
+            roles = new ArrayList<>();
+            roles.add(userInfo.getUserGrade());
+        }
+        return roles;
     }
 
     public void evictUser(Long userNo) {

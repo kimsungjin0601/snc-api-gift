@@ -6,9 +6,15 @@ import com.cstify.common.vo.UserInfo;
 import com.snc.gift.service.UserCacheService;
 import lombok.RequiredArgsConstructor;
 import org.jspecify.annotations.NullMarked;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -31,6 +37,14 @@ public class SecurityUserService implements SecurityUserDetailsService {
         if (userInfo == null) {
             throw new UsernameNotFoundException("NOT_FOUND_USER");
         }
+
+        List<String> roles = userCacheService.getUserAuthorities(userNo);
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        if (!CollectionUtils.isEmpty(roles)) {
+            roles.forEach((auth) -> authorities.add(new SimpleGrantedAuthority("ROLE_" + auth)));
+        }
+        userInfo.setAuthorities(authorities);
+
         return new SecurityUserDetails(userInfo);
     }
 }

@@ -1,11 +1,9 @@
 package com.snc.gift.service;
 
 import com.cstify.common.exception.CookieExpiredException;
-import com.cstify.common.exception.RefreshTokenExpiredException;
 import com.cstify.common.provider.TokenProvider;
 import com.cstify.common.service.RedisTokenService;
 import com.cstify.common.service.TokenBlockService;
-import com.cstify.common.util.CodeUtil;
 import com.cstify.common.util.RequestUtil;
 import com.cstify.common.vo.TokenPayload;
 import jakarta.servlet.http.HttpServletRequest;
@@ -40,9 +38,7 @@ public class TokenService {
 
         // 1. Refresh 토큰 검증
         TokenPayload payload = redisTokenService.getTokens(tokenKey);
-        if(!tokenProvider.validateToken(payload.getRefreshToken())) {
-            throw new RefreshTokenExpiredException();
-        }
+        tokenProvider.validateRefreshToken(payload.getRefreshToken());
 
         Long userNo = tokenProvider.getUserNo(payload.getRefreshToken());
         List<String> roles = tokenProvider.getRoles(payload.getRefreshToken());

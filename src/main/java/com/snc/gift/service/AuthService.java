@@ -7,7 +7,6 @@ import com.cstify.common.util.CodeUtil;
 import com.cstify.common.vo.SecurityUserDetails;
 import com.cstify.common.vo.TokenPayload;
 import com.snc.gift.dto.response.TokenResponse;
-import com.snc.gift.security.SecurityUserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +28,6 @@ public class AuthService {
     private long ttl;
 
     private final AuthenticationManager authenticationManager;
-    private final SecurityUserService securityUserService;
     private final TokenProvider tokenProvider;
     private final RedisTokenService redisTokenService;
     private final TokenBlockService tokenBlockService;
@@ -41,7 +39,8 @@ public class AuthService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         // 인증 성공 후 처리
-        SecurityUserDetails userDetails = (SecurityUserDetails) securityUserService.loadUserByUsername(username);
+        SecurityUserDetails userDetails = (SecurityUserDetails) authentication.getPrincipal();
+        assert userDetails != null;
         String accessToken = processLoginSuccess(userDetails, request, response);
 
         // AccessToken 반환
@@ -70,7 +69,7 @@ public class AuthService {
         ResponseCookie cookie = ResponseCookie.from("tokenKey", tokenKey)
                 .httpOnly(true)
                 .secure(true)
-                .sameSite("Strict") 	// Lax or Strict
+                .sameSite("Strict") // Lax or Strict
                 .path("/api/auth") 	// 재발급 요청 에만 쿠키 전송
                 .maxAge(Duration.ofSeconds(ttl)) // TTL 설정
                 .build();

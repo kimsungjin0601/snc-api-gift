@@ -2,11 +2,10 @@ package com.snc.gift.config;
 
 import com.snc.gift.security.CustomAccessDeniedHandler;
 import com.snc.gift.security.CustomAuthEntryPoint;
-import com.cstify.common.filter.JwtAuthFilter;
 import com.cstify.common.provider.TokenProvider;
-import com.cstify.common.service.RedisTokenService;
 import com.cstify.common.service.SecurityUserDetailsService;
 import com.cstify.common.service.TokenBlockService;
+import com.snc.gift.security.JwtAuthFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -29,7 +28,6 @@ public class SecurityConfig {
 	private CorsConfigurationSource corsConfigurationSource;
 
 	private final SecurityUserDetailsService userDetailsService;
-	private final RedisTokenService redisTokenService;
 	private final TokenBlockService tokenBlockService;
 	private final TokenProvider tokenProvider;
 
@@ -37,7 +35,7 @@ public class SecurityConfig {
 	private final CustomAuthEntryPoint customAuthEntryPoint;
 
 	@Bean
-    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain filterChain(HttpSecurity http) {
 		http.cors(cors -> cors.configurationSource(corsConfigurationSource))
 			.csrf(AbstractHttpConfigurer::disable)
 			.sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -45,8 +43,14 @@ public class SecurityConfig {
 			.httpBasic(AbstractHttpConfigurer::disable)
 			.authorizeHttpRequests(auth -> auth
 					.requestMatchers("/", "/api-docs/**", "/swagger-ui/**").permitAll()
-					.requestMatchers("/api/auth/sign-up", "/api/auth/sign-in").permitAll()
-					.anyRequest().authenticated()
+					.requestMatchers("/api/auth/member/sign-in","/api/auth/admin/sign-in","/api/auth/purchase/sign-in").permitAll()
+					.requestMatchers("/api/auth/sign-in/**","/api/system/admin").permitAll()
+					.requestMatchers("/api/front/member/sign-up","/api/front/main","/api/front/gift/**").permitAll()
+					.requestMatchers("/api/auth/sign-out","/api/auth/sign-out/force/**").permitAll()
+					.requestMatchers("/api/front/**").hasRole("MEMBER")
+					.requestMatchers("/api/admin/**").hasAnyRole("AGENT_ADMIN","HQ_ADMIN","SUPER_HQ_ADMIN","SYSTEM_ADMIN")
+					.requestMatchers("/api/purchase/**").hasRole("HQ_ORDER")
+					.anyRequest().permitAll()
 			)
 			.exceptionHandling(handler -> handler
 					.authenticationEntryPoint(customAuthEntryPoint)
@@ -56,6 +60,6 @@ public class SecurityConfig {
 	}
 
 	private JwtAuthFilter jwtAuthFilter(){
-		return new JwtAuthFilter(userDetailsService, redisTokenService, tokenBlockService, tokenProvider);
+		return new JwtAuthFilter(userDetailsService, tokenBlockService, tokenProvider);
 	}
 }

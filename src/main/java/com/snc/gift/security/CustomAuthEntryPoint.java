@@ -20,6 +20,7 @@ public class CustomAuthEntryPoint implements AuthenticationEntryPoint {
 						 AuthenticationException authException) throws IOException {
 		response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 		response.setContentType("application/json");
-		response.getWriter().write("{\"error\": \"Unauthorized\"}");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write("{\"code\":401,\"message\":\"UNAUTHORIZED\"}");
 	}
 }
