@@ -1,8 +1,11 @@
 package com.snc.gift.controller;
 
 
+import com.cstify.common.annotation.CustomAnnotation.User;
+import com.cstify.common.vo.UserInfo;
 import com.snc.gift.service.SignOutService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -28,13 +31,13 @@ public class SignOutController {
 
     @Operation(summary = "로그 아웃", description = "로그 아웃")
     @PostMapping("/sign-out")
-    public void signup(HttpServletRequest request) {
-        signOutService.signOut(request);
+    public void signOut(@Parameter(hidden = true) @User UserInfo userInfo, HttpServletRequest request) {
+        signOutService.signOut(userInfo, request);
     }
 
     @Operation(summary = "강제 로그 아웃", description = "강제 로그 아웃")
     @PostMapping("/sign-out/force/{userNo}")
-    public void signup(@PathVariable Long userNo) {
+    public void signOut(@PathVariable Long userNo) {
         signOutService.signOut(userNo);
     }
 }

@@ -5,6 +5,7 @@ import com.cstify.common.service.RedisTokenService;
 import com.cstify.common.service.TokenBlockService;
 import com.cstify.common.util.RequestUtil;
 import com.cstify.common.vo.TokenPayload;
+import com.cstify.common.vo.UserInfo;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,18 +17,18 @@ public class SignOutService {
     private final RedisTokenService redisTokenService;
     private final TokenBlockService tokenBlockService;
 
-    public void signOut(HttpServletRequest request) {
+    public void signOut(UserInfo userInfo, HttpServletRequest request) {
+        String tokenKey = redisTokenService.getTokenKey(userInfo.getUserNo());
         String accessToken = RequestUtil.getAuthorizationToken(request);
-        String tokenKey = RequestUtil.extractCookie(request, "tokenKey");
         Long userNo = tokenProvider.getUserNo(accessToken);
-        tokenBlockService.blockToken(accessToken, tokenKey, userNo);
+        tokenBlockService.blockRefreshToken(accessToken, tokenKey, userNo);
     }
 
     public void signOut(Long userNo) {
         String tokenKey = redisTokenService.getTokenKey(userNo);
         TokenPayload tokenPayload = redisTokenService.getTokens(tokenKey);
         if(tokenPayload != null) {
-            tokenBlockService.blockToken(tokenPayload.getAccessToken(), tokenKey, userNo);
+            tokenBlockService.blockRefreshToken(tokenPayload.getAccessToken(), tokenKey, userNo);
         }
     }
 
