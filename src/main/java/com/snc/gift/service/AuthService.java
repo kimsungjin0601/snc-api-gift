@@ -70,7 +70,7 @@ public class AuthService {
                 .httpOnly(true)
                 .secure(true)
                 .sameSite("Strict") // Lax or Strict
-                .path("/api/auth") 	// 재발급 요청 에만 쿠키 전송
+                .path("/api/auth/token") 	// 재발급 요청 에만 쿠키 전송
                 .maxAge(Duration.ofSeconds(ttl)) // TTL 설정
                 .build();
 
