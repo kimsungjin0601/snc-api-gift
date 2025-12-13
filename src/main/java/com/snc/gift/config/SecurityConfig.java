@@ -39,7 +39,7 @@ public class SecurityConfig {
 			"/", "/api-docs/**", "/swagger-ui/**",
 			"/api/auth/member/sign-in","/api/auth/admin/sign-in","/api/auth/purchase/sign-in",
 			"/api/auth/sign-in/**","/api/system/admin",
-			"/api/front/member/sign-up","/api/front/main","/api/front/gift/**"
+			"/api/front/member/sign-up","/api/front/main","/api/front/gift/**","/api/auth/token"
 	};
 
 	@Bean

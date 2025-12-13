@@ -19,12 +19,12 @@ public class SignInService {
     private final AuthService authService;
 
     public TokenResponse signInMember(SignInRequest params, HttpServletRequest request, HttpServletResponse response) {
-        checkMemberRole(params.getLoginId());
+        //checkMemberRole(params.getLoginId());
         return authService.login(params.getLoginId(), params.getPassword(), request, response);
     }
 
     public TokenResponse signInAdmin(SignInRequest params, HttpServletRequest request, HttpServletResponse response) {
-        checkAdminRole(params.getLoginId());
+        //checkAdminRole(params.getLoginId());
         return authService.login(params.getLoginId(), params.getPassword(), request, response);
     }
 
