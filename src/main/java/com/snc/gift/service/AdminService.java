@@ -59,9 +59,10 @@ public class AdminService {
         // insert partner
         Partner partner = Partner.builder().parentPartnerNo(userInfo.getPartnerNo())
                                         .tenantNo(userInfo.getTenantNo())
+                                        .parentPartnerNo(userInfo.getPartnerNo())
                                         .partnerTypeCd(params.getPartnerTypeCd())
                                         .partnerCode(CodeUtil.partnerCode())
-                                        .partnerName(userInfo.getUserName())
+                                        .partnerName(params.getUserName())
                                         .createdBy(userInfo.getUserNo())
                                         .updatedBy(userInfo.getUserNo()).build();
         partnerMapper.insertPartner(partner);
